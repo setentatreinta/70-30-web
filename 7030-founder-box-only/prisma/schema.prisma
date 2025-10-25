@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Lead {
+  id           String       @id @default(cuid())
+  email        String?      @unique
+  phone        String?      @unique
+  whatsappOK   Boolean      @default(false)
+  createdAt    DateTime     @default(now())
+  progress     Progress?
+  measurements Measurement?
+  tokens       AccessToken[]
+}
+
+model Progress {
+  id        String   @id @default(cuid())
+  lead      Lead     @relation(fields: [leadId], references: [id])
+  leadId    String   @unique
+  stage     String   @default("box") // 'box' | 'quiz' | 'final'
+  updatedAt DateTime @updatedAt
+}
+
+model Measurement {
+  id        String   @id @default(cuid())
+  lead      Lead     @relation(fields: [leadId], references: [id])
+  leadId    String   @unique
+  waistCm   Int
+  inseamCm  Int
+  notes     String?
+  createdAt DateTime @default(now())
+}
+
+model AccessToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  lead      Lead     @relation(fields: [leadId], references: [id])
+  leadId    String
+  stage     String
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime @default(now())
+}
