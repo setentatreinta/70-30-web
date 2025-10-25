@@ -1,0 +1,11 @@
+node_modules/
+.pnpm-store/
+.env
+.env.*
+*.log
+.next/
+dist/
+.prisma/
+.DS_Store
+coverage/
+

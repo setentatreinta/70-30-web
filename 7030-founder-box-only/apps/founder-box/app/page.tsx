@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
-import { prisma } from '../../../packages/utils/db'
+import { prisma } from '@repo/utils/db'
 import Box3D from './components/stages/Box3D'
 import QuizForm from './components/stages/QuizForm'
 import FinalView from './components/stages/FinalView'

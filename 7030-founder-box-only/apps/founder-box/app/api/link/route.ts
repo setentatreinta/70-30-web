@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { prisma } from '../../../../packages/utils/db'
 import { randomBytes } from 'crypto'
+import { NextRequest, NextResponse } from 'next/server'
+import { prisma } from '@repo/utils/db'
 
 async function sendEmail(to: string, url: string) {
   if (!process.env.RESEND_API_KEY) return false
@@ -8,7 +8,7 @@ async function sendEmail(to: string, url: string) {
     const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
