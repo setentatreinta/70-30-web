@@ -1,6 +1,6 @@
-import { prisma } from '../../../../packages/utils/db'
 import { notFound } from 'next/navigation'
 import { cookies } from 'next/headers'
+import { prisma } from '@repo/utils/db'
 
 export default async function FinalPage({ searchParams }: { searchParams: { token?: string } }) {
   const token = searchParams?.token

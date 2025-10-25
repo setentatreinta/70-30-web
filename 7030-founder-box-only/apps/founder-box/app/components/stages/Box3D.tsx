@@ -1,6 +1,7 @@
 'use client'
-import { Canvas } from '@react-three/fiber'
+
 import { OrbitControls } from '@react-three/drei'
+import { Canvas } from '@react-three/fiber'
 import { useTransition } from 'react'
 
 export default function Box3D({ leadId }: { leadId: string }) {
